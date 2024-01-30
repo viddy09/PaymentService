@@ -33,6 +33,7 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
+            <version>8.2.0</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -51,6 +52,13 @@
             <artifactId>stripe-java</artifactId>
             <version>24.7.0</version>
         </dependency>
+        <!-- https://mvnrepository.com/artifact/com.razorpay/razorpay-java -->
+        <dependency>
+            <groupId>com.razorpay</groupId>
+            <artifactId>razorpay-java</artifactId>
+            <version>1.4.4</version>
+        </dependency>
+
 
     </dependencies>
 

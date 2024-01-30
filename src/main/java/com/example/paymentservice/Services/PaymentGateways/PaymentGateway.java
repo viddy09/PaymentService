@@ -1,4 +1,4 @@
-package com.example.paymentservice.PaymentGateways;
+package com.example.paymentservice.Services.PaymentGateways;
 
 import com.stripe.exception.StripeException;
 
