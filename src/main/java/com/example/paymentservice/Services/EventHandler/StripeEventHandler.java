@@ -31,7 +31,7 @@ public class StripeEventHandler implements HandleEvent {
     }
     public StripeEventHandler(PaymentRepo paymentRepo){
         this.paymentRepo = paymentRepo;
-    };
+    }
     @Override
     public void handleEvent(EventDTO event) {
         StripeEventDTO stripeEventDTO = (StripeEventDTO) event;
@@ -43,6 +43,7 @@ public class StripeEventHandler implements HandleEvent {
                 .orElse(null);
         if(paymentLinkId != null){
             try{
+                //Retrieving MetaData to  Update Payment Status.
                 PaymentLink paymentLink = PaymentLink.retrieve(paymentLinkId);
                 metadata = paymentLink.getMetadata();
             }
@@ -52,7 +53,11 @@ public class StripeEventHandler implements HandleEvent {
         }
         if(metadata != null){
             if(metadata.containsKey("paymentId")){
+                //Getting Payment Object from PaymentRepo
                 Optional<Payment> optionalPayment = paymentRepo.findById(Long.valueOf(metadata.get("paymentId")));
+                if(!optionalPayment.isPresent()){
+                    return;
+                }
                 Payment payment = optionalPayment.get();
                 if(payment != null){
                     if(stripeEventDTO.getType().equals("checkout.session.completed")){
