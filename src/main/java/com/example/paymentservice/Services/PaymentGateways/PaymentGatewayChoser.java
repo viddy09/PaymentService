@@ -19,9 +19,9 @@ public class PaymentGatewayChoser {
         Random random = new Random();
         int randomInt = random.nextInt();
 
-        if (randomInt % 2 == 0) {
+        /*if (randomInt % 2 == 0) {
             return razorPayGateway;
-        }
-        return stripeGateway;
+        }*/
+        return razorPayGateway;
     }
 }

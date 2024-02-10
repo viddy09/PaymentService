@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.List;
+import java.util.Map;
+
 @Getter
 @Setter
 public class RazorPayEventDTO extends EventDTO{
@@ -12,76 +14,54 @@ public class RazorPayEventDTO extends EventDTO{
     private long created_at;
     private String entity;
     private String event;
-    private Payload payload;
+    private PayloadObject payload;
 
     @Getter
     @Setter
-    public static class Payload {
-        private Payment payment;
+    public static class PayloadObject {
+        private PaymentObject payment;
     }
 
     @Getter
     @Setter
-    public static class Payment {
-        private Entity entity;
+    public static class PaymentObject {
+        private EntityObject entity;
     }
 
     @Getter
     @Setter
-    public static class Entity {
-        private AcquirerData acquirer_data;
+    public static class EntityObject {
+        private Object acquirer_data;
         private int amount;
         private int amount_refunded;
         private int amount_transferred;
-        private String bank;
+        private Object bank;
         private boolean captured;
-        private Card card;
+        private Object card;
         private String card_id;
         private String contact;
         private long created_at;
         private String currency;
-        private String description;
+        private Object description;
         private String email;
+        private String entity;
         private String error_code;
         private String error_description;
-        private String error_reason;
-        private String error_source;
-        private String error_step;
-        private String fee;
+        private Object error_reason;
+        private Object error_source;
+        private Object error_step;
+        private Object fee;
         private String id;
         private boolean international;
-        private String invoice_id;
+        private Object invoice_id;
         private String method;
-        private List<String> notes;
+        private Map<String, Object> notes;
         private String order_id;
-        private String refund_status;
+        private Object refund_status;
         private String status;
-        private String tax;
+        private Object tax;
         private String token_id;
-        private String vpa;
-        private String wallet;
-    }
-
-    @Getter
-    @Setter
-    public static class AcquirerData {
-        private String auth_code;
-        private String rrn;
-    }
-
-    @Getter
-    @Setter
-    public static class Card {
-        private boolean emi;
-        private String entity;
-        private String id;
-        private String iin;
-        private boolean international;
-        private String issuer;
-        private String last4;
-        private String name;
-        private String network;
-        private String sub_type;
-        private String type;
+        private Object vpa;
+        private Object wallet;
     }
 }

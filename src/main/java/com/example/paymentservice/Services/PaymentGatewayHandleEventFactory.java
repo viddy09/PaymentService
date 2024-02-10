@@ -18,7 +18,7 @@ public class PaymentGatewayHandleEventFactory {
 
     public HandleEvent getPaymentGatewayHandleEvent(PaymentProvider paymnetProvider){
         if (PaymentProvider.RAZORPAY.equals(paymnetProvider)){
-            return new RazorPayEventHandler();
+            return new RazorPayEventHandler(paymentRepo);
         }
         else{
             return new StripeEventHandler(paymentRepo);

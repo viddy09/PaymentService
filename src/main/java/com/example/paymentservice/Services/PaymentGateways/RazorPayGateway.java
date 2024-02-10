@@ -42,12 +42,19 @@ public class RazorPayGateway implements PaymentGateway{
             paymentLinkRequest.put("reference_id",orderId);
             paymentLinkRequest.put("description","Payment for order #" + orderId);
 
-            paymentLinkRequest.put("customer", this.getCustomer(emailId, String.valueOf(Optional.of(payment).map(Payment::getId).orElse(null))));
+            paymentLinkRequest.put("customer", this.getCustomer(emailId));
 
             JSONObject notify = new JSONObject();
             notify.put("sms",true);
             notify.put("email",true);
             paymentLinkRequest.put("notify",notify);
+
+            String paymentId = String.valueOf(Optional.of(payment).map(Payment::getId).orElse(null));
+            if(paymentId != null){
+                JSONObject notes = new JSONObject();
+                notes.put("paymentId", paymentId);
+                paymentLinkRequest.put("notes",notes);
+            }
 
             paymentLinkRequest.put("reminder_enable",true);
             paymentLinkRequest.put("callback_url","https://example-callback-url.com/");
@@ -61,12 +68,11 @@ public class RazorPayGateway implements PaymentGateway{
         }
     }
 
-    public JSONObject getCustomer(String emailId, String paymentId){
+    public JSONObject getCustomer(String emailId){
         JSONObject customer = new JSONObject();
         customer.put("name","Prakash Parmar");
         customer.put("contact","8889977445");
         customer.put("email",emailId);
-        customer.put("paymentId", paymentId);
         return customer;
     }
 }
