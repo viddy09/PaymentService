@@ -16,6 +16,8 @@
               Payment record staus updated to Failed
       -> Else
               Request Denied
+![E-Commerce](https://github.com/viddy09/PaymentService/assets/70717147/ac5c0a41-54fa-42ae-8da6-89352f4d98c4)
+
 
 # Pre Requisites:
   	JDK 12+, Spring and spring boot Framework, Maven dependency, for Windows is required.
